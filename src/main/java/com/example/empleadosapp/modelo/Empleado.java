@@ -6,8 +6,6 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,9 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.example.empleadosapp.enumeracion.EstadoEmpleadoEnum;
-import com.example.empleadosapp.enumeracion.TipoEmpleadoEnum;
 
 import lombok.Data;
 
@@ -32,20 +27,16 @@ public class Empleado implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "empleado_id")
 	private Long empleadoId;
-	
+
 	@Column(nullable = false)
 	private String identificacion;
-	
+
 	@Column(nullable = false)
 	private String nombre;
 
-	@Column(name = "tipo")
-	@Enumerated(EnumType.STRING)
-	private TipoEmpleadoEnum tipo;
+	private String tipo;
 
-	@Column(name = "estado")
-	@Enumerated(EnumType.STRING)
-	private EstadoEmpleadoEnum estado;
+	private String estado;
 
 	@JoinColumn(name = "empleado_padre_id", referencedColumnName = "empleado_id")
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -56,8 +47,8 @@ public class Empleado implements Serializable {
 	@JoinColumn(name = "departamento_id", referencedColumnName = "departamento_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Departamento departamento;
-	
-	@Column(nullable = false)	
+
+	@Column(nullable = false)
 	private BigDecimal sueldo;
 
 }
