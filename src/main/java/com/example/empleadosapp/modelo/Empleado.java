@@ -1,6 +1,7 @@
 package com.example.empleadosapp.modelo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -55,5 +56,8 @@ public class Empleado implements Serializable {
 	@JoinColumn(name = "departamento_id", referencedColumnName = "departamento_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Departamento departamento;
+	
+	@Column(nullable = false)	
+	private BigDecimal sueldo;
 
 }
